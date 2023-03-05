@@ -127,6 +127,19 @@ void destroy(lnode* &L)
     }
 }
 
+void reverse(lnode* &L)
+{
+    lnode* next_node = nullptr;
+    do
+    {
+        lnode* prev_node = L->next;
+        L->next = next_node;
+        next_node = L;
+        L = prev_node;
+    }while(L != nullptr);
+    L = next_node;
+}
+
 int main()
 {
     lnode* test_list = new lnode({10, 2,4,5,9});
@@ -136,6 +149,8 @@ int main()
     wypisz(test_list);
     std::cout << nty(3, test_list) << std::endl;
     insert_after_smaller(test_list, 13);
+    wypisz(test_list);
+    reverse(test_list);
     wypisz(test_list);
     remove(test_list, 4);
     wypisz(test_list);
