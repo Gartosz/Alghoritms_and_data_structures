@@ -116,6 +116,16 @@ void filter(lnode* &L, bool(*cond)(int))
     }
 }
 
+void destroy(lnode* &L)
+{
+    if (L != nullptr)
+    {
+        destroy(L->next);
+        delete L;
+    }
+    return;
+}
+
 int main()
 {
     lnode* test_list = new lnode({10, 2,4,5,9});
@@ -130,4 +140,5 @@ int main()
     wypisz(test_list);
     filter(test_list, [](int x) { return x < 10 || !(x % 2); });
     wypisz(test_list);
+    destroy(test_list);
 }
