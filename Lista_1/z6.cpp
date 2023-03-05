@@ -31,6 +31,19 @@ void wypisz (lnode* L)
     }
     std::cout << "]";
 }
+
+int nty(int n, lnode *L)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        if (L == nullptr)
+            return 0;
+        else
+            L = L->next;
+    }
+    return L != nullptr ? L->key : 0;
+}
+
 void insert(lnode* &L, int x)
 {
     L = new lnode(x, L);
@@ -54,4 +67,5 @@ int main()
     std::cout << std::endl << suma(test_list) << std::endl;
     insert(test_list, 11);
     wypisz(test_list);
+    std::cout << std::endl << nty(3, test_list) << std::endl;
 }
