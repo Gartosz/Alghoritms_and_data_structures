@@ -29,7 +29,7 @@ void wypisz (lnode* L)
         std::cout << L->key << ", "; 
         L = L->next;
     }
-    std::cout << "]";
+    std::cout << "]\n";
 }
 
 int nty(int n, lnode *L)
@@ -68,14 +68,37 @@ void insert_after_smaller(lnode *&L, int x)
         insert_after_smaller(L->next, x);
 }
 
+void remove(lnode* &L, int x)
+{
+    lnode* node = L;
+    lnode* prev_node = nullptr;
+    while(node != nullptr)
+    {
+        if (node->key == x)
+        {
+            lnode* node_to_remove = node;
+            node = node->next;
+            prev_node->next = node;
+            delete node_to_remove;
+        }
+        else
+        {
+            prev_node = node;
+            node = node->next;
+        }
+    }
+}
+
 int main()
 {
     lnode* test_list = new lnode({10, 2,4,5,9});
     wypisz(test_list);
-    std::cout << std::endl << suma(test_list) << std::endl;
+    std::cout << suma(test_list) << std::endl;
     insert(test_list, 11);
     wypisz(test_list);
-    std::cout << std::endl << nty(3, test_list) << std::endl;
+    std::cout << nty(3, test_list) << std::endl;
     insert_after_smaller(test_list, 13);
+    wypisz(test_list);
+    remove(test_list, 4);
     wypisz(test_list);
 }
