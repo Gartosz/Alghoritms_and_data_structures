@@ -119,12 +119,12 @@ void filter(lnode* &L, bool(*cond)(int))
 
 void destroy(lnode* &L)
 {
-    if (L != nullptr)
+    while(L != nullptr)
     {
-        destroy(L->next);
-        delete L;
+        lnode* to_destroy = L;
+        L = L->next;
+        delete to_destroy;
     }
-    return;
 }
 
 int main()
