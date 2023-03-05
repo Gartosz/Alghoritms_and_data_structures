@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 
 struct lnode
 { 
@@ -81,7 +82,7 @@ void remove(lnode* &L, int x)
                 node = L->next;
             node = node->next;
             if (prev_node != nullptr)
-            prev_node->next = node;
+                prev_node->next = node;
             delete node_to_remove;
         }
         else
@@ -141,4 +142,5 @@ int main()
     filter(test_list, [](int x) { return x < 10 || !(x % 2); });
     wypisz(test_list);
     destroy(test_list);
+    assert(test_list == nullptr);
 }
