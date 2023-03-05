@@ -77,7 +77,10 @@ void remove(lnode* &L, int x)
         if (node->key == x)
         {
             lnode* node_to_remove = node;
+            if (L == node)
+                node = L->next;
             node = node->next;
+            if (prev_node != nullptr)
             prev_node->next = node;
             delete node_to_remove;
         }
