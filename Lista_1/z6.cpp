@@ -92,6 +92,30 @@ void remove(lnode* &L, int x)
     }
 }
 
+void filter(lnode* &L, bool(*cond)(int))
+{
+    lnode* node = L;
+    lnode* prev_node = nullptr;
+    while(node != nullptr)
+    {
+        if (!cond(node->key))
+        {
+            lnode* node_to_remove = node;
+            if (L == node)
+                L = node->next;
+            node = node->next;
+            if (prev_node != nullptr)
+                prev_node->next = node;
+            delete node_to_remove;
+        }
+        else
+        {
+            prev_node = node;
+            node = node->next;
+        }
+    }
+}
+
 int main()
 {
     lnode* test_list = new lnode({10, 2,4,5,9});
@@ -103,5 +127,7 @@ int main()
     insert_after_smaller(test_list, 13);
     wypisz(test_list);
     remove(test_list, 4);
+    wypisz(test_list);
+    filter(test_list, [](int x) { return x < 10 || !(x % 2); });
     wypisz(test_list);
 }
