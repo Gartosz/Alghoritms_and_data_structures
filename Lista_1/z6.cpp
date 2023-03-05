@@ -60,6 +60,14 @@ int suma (lnode* L)
     return sum;
 }
 
+void insert_after_smaller(lnode *&L, int x)
+{
+    if (L == nullptr || L->key > x)
+            insert(L, x);
+    else
+        insert_after_smaller(L->next, x);
+}
+
 int main()
 {
     lnode* test_list = new lnode({10, 2,4,5,9});
@@ -68,4 +76,6 @@ int main()
     insert(test_list, 11);
     wypisz(test_list);
     std::cout << std::endl << nty(3, test_list) << std::endl;
+    insert_after_smaller(test_list, 13);
+    wypisz(test_list);
 }
