@@ -140,6 +140,46 @@ void reverse(lnode* &L)
     L = next_node;
 }
 
+lnode* merge(lnode* L1, lnode* L2)
+{
+    lnode* merged_list = nullptr;
+    lnode* next_node = merged_list;
+    while(L1 != nullptr)
+    {
+        if(L2 != nullptr && L1->key > L2->key)
+        {
+            if(merged_list != nullptr)
+            {
+                next_node->next = L2;
+                next_node = L2;
+            }
+            else
+            {
+                merged_list = L2;
+                next_node = merged_list;
+            }
+            L2 = L2->next;
+        }
+        else
+        {
+            if(merged_list != nullptr)
+            {
+                next_node->next = L1;
+                next_node = L1;
+            }
+            else
+            {
+                merged_list = L1;
+                next_node = merged_list;
+            }
+            L1 = L1->next;
+        }
+    }
+    if (L2 != nullptr)
+        next_node->next = L2;
+    return merged_list;
+}
+
 int main()
 {
     lnode* test_list = new lnode({10, 2,4,5,9});
@@ -158,4 +198,9 @@ int main()
     wypisz(test_list);
     destroy(test_list);
     assert(test_list == nullptr);
+
+    lnode* list_1 = new lnode({1,2,5,6,7,11,12,14});
+    lnode* list_2 = new lnode({3,4,8,13});
+    lnode* merged = merge(list_1, list_2);
+    wypisz(merged);
 }
