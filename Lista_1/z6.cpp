@@ -29,7 +29,11 @@ void wypisz (lnode* L)
         std::cout << L->key << ", "; 
         L = L->next;
     }
-    std::cout << " ]";
+    std::cout << "]";
+}
+void insert(lnode* &L, int x)
+{
+    L = new lnode(x, L);
 }
 
 int suma (lnode* L)
@@ -48,4 +52,6 @@ int main()
     lnode* test_list = new lnode({10, 2,4,5,9});
     wypisz(test_list);
     std::cout << std::endl << suma(test_list) << std::endl;
+    insert(test_list, 11);
+    wypisz(test_list);
 }
