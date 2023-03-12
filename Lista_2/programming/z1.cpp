@@ -1,14 +1,14 @@
-struct node
+struct Node
 {
     int x; 
-    node *left; 
-    node *right; 
-    node *parent;
+    Node *left; 
+    Node *right; 
+    Node *parent;
 
-    node(int key, node *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
+    Node(int key, Node *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
 };
 
 int main()
 {
-    node *bst = new node(30);
+    Node *bst = new Node(30);
 }
