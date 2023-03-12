@@ -7,3 +7,8 @@ struct node
 
     node(int key, node *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
 };
+
+int main()
+{
+    node *bst = new node(30);
+}
