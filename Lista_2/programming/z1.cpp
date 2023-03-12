@@ -14,7 +14,7 @@ void insert(Node *&t, int x)
 {
     Node **current_node = &t;
     Node **parent_node = nullptr;
-    while(*current_node != nullptr)
+    while(*current_node)
     {
         parent_node = current_node;
         if (x < (*current_node)->x)
@@ -29,5 +29,5 @@ int main()
 {
     Node *bst = new Node(30);
     insert(bst, 10);
-    std::cout << bst->x << " " << bst->left->x;
+    std::cout << bst->x << " " << bst->left->x << std::endl;
 }
