@@ -57,6 +57,37 @@ void inorder_do_rec(Node *t, void f(Node*))
     inorder_do_rec(t->right, f);
 }
 
+void inorder_do(Node *t, void f(Node*))
+{
+    Node *current_node = t;
+    
+    while(current_node)
+    {
+        while (current_node->left) 
+            current_node = current_node->left;
+        f(current_node);
+        if (current_node->right)
+            current_node = current_node->right;
+        else
+        {
+            Node *child = current_node;
+            current_node = current_node->parent;
+            while(current_node && (!current_node->right || current_node->right == child))
+            {
+                if (current_node->right != child)
+                    f(current_node);
+                child = current_node;
+                current_node = current_node->parent;
+            }
+            if (current_node)
+            {
+                f(current_node);
+                current_node = !current_node->right || current_node->right == child ? current_node->parent : current_node->right;
+            }
+        }
+    }
+}
+
 int main()
 {
     Node *bst = new Node(30);
