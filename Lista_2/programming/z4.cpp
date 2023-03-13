@@ -8,7 +8,7 @@ class BSTiter
     BSTiter *left;
     BSTiter *right;
 
-    BSTiter(int key, BSTiter *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
+    BSTiter(int key, BSTiter *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr), current_node(this) {} 
 
     private:
     BSTiter *current_node;
