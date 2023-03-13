@@ -17,10 +17,7 @@ void insert(Node *&t, int x)
     while(*current_node)
     {
         parent_node = current_node;
-        if (x < (*current_node)->x)
-            current_node = &((*current_node)->left);
-        else
-            current_node = &((*current_node)->right);
+        current_node = x < (*current_node)->x ? &((*current_node)->left) : &((*current_node)->right);
     }
     *current_node = new Node(x, *parent_node);
 }
