@@ -22,6 +22,32 @@ void insert(Node *&t, int x)
     *current_node = new Node(x, *parent_node);
 }
 
+void remove(Node *&t, int x)
+{
+    Node **current_node = &t;
+    while(*current_node && (*current_node)->x != x)
+        current_node = x < (*current_node)->x ? &((*current_node)->left) : &((*current_node)->right);
+    if (*current_node)
+    {
+        if ((*current_node)->left && (*current_node)->right)
+        {
+            Node **replacement_node = &(*current_node)->right;
+            while((*replacement_node)->left)
+                replacement_node = &(*replacement_node)->left;
+            (*current_node)->x = (*replacement_node)->x;
+            current_node = replacement_node;
+        }
+        
+        Node *child_node = (*current_node)->right ? (*current_node)->right : (*current_node)->left;
+        if (child_node)
+            child_node->parent = (*current_node)->parent;
+        delete *current_node;
+        *current_node = child_node;
+    }
+    else
+        std::cout << "Key not found.\n";
+}
+
 void inorder_do_rec(Node *t, void f(Node*))
 {
     if (!t)
@@ -39,5 +65,7 @@ int main()
     int nodes[6] = {1, 5, 7, 24, 73, 39};
     for (int i = 0; i < sizeof(nodes)/sizeof(*nodes); ++i)
         insert(bst, nodes[i]);
+    inorder_do_rec(bst, [](Node *t) {std::cout << t->x << std::endl;});
+    remove(bst, 24);
     inorder_do_rec(bst, [](Node *t) {std::cout << t->x << std::endl;});
 }
