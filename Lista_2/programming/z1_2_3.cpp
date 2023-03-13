@@ -100,6 +100,5 @@ int main()
     remove(bst, 24);
     inorder_do_rec(bst, [](Node *t) {std::cout << t->x << std::endl;});
     remove(bst, 24);
-    // remove(bst, 10);
     inorder_do(bst, [](Node *t) {std::cout << t->x << std::endl;});
 }
