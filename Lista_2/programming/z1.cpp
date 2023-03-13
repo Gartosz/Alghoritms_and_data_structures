@@ -31,11 +31,11 @@ void remove(Node *&t, int x)
     {
         if ((*current_node)->left && (*current_node)->right)
         {
-            Node **replacement_node = &(*current_node)->right;
-            while((*replacement_node)->left)
-                replacement_node = &(*replacement_node)->left;
-            (*current_node)->x = (*replacement_node)->x;
-            current_node = replacement_node;
+            Node *replacement_node = (*current_node)->right;
+            while(replacement_node->left)
+                replacement_node = replacement_node->left;
+            (*current_node)->x = replacement_node->x;
+            current_node = &replacement_node;
         }
         
         Node *child_node = (*current_node)->right ? (*current_node)->right : (*current_node)->left;
@@ -67,5 +67,8 @@ int main()
         insert(bst, nodes[i]);
     inorder_do_rec(bst, [](Node *t) {std::cout << t->x << std::endl;});
     remove(bst, 24);
+    inorder_do_rec(bst, [](Node *t) {std::cout << t->x << std::endl;});
+    remove(bst, 24);
+    remove(bst, 10);
     inorder_do_rec(bst, [](Node *t) {std::cout << t->x << std::endl;});
 }
