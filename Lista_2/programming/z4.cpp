@@ -10,14 +10,6 @@ class Node
 
     Node(int key, Node *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
 
-    struct BSTiter 
-    {
-        BSTiter(Node *_current) : current(_current) {}
-    private:
-        Node *current;
-    };
-
-    
     void insert(int x)
     {
         Node *parent_node = this;
@@ -31,6 +23,15 @@ class Node
     }
 
 };
+
+    struct BSTiter 
+    {
+        BSTiter(Node *_current) : current(_current) {}
+
+
+    private:
+        Node *current;
+    };
 
 int main()
 {
