@@ -10,6 +10,18 @@ class BSTiter
 
     BSTiter(int key, BSTiter *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr), current(this) {} 
 
+    void insert(int x)
+    {
+        BSTiter **current_node = &current;
+        BSTiter **parent_node = nullptr;
+        while(*current_node)
+        {
+            parent_node = current_node;
+            current_node = x < (*current_node)->x ? &((*current_node)->left) : &((*current_node)->right);
+        }
+        *current_node = new BSTiter(x, *parent_node);
+    }
+
     private:
     BSTiter *current;
 
@@ -17,5 +29,8 @@ class BSTiter
 
 int main()
 {
+    BSTiter tree(41);
+    tree.insert(16);
+    std::cout << tree.x << " " << (*tree.left).x;
     return 0;
 }
