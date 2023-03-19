@@ -12,6 +12,7 @@ class Node
 
     struct BSTiter 
     {
+        BSTiter(Node *_current) : current(_current) {}
     private:
         Node *current;
     };
