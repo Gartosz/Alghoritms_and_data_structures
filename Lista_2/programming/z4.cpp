@@ -28,6 +28,8 @@ class Node
     {
         BSTiter(Node *_current) : current(_current) {}
 
+        int &operator*() const { return current->x; }
+        Node* operator->() { return current; }
 
     private:
         Node *current;
