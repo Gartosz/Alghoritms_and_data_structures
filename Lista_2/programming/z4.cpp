@@ -8,8 +8,15 @@ class BSTiter
     BSTiter *left;
     BSTiter *right;
 
-    BSTiter(int key, BSTiter *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr), current(this) {} 
+    BSTiter(int key, BSTiter *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
 
+    struct Iterator 
+    {
+    private:
+        BSTiter *current;
+    };
+
+    
     void insert(int x)
     {
         BSTiter **current_node = &current;
@@ -21,9 +28,6 @@ class BSTiter
         }
         *current_node = new BSTiter(x, *parent_node);
     }
-
-    private:
-    BSTiter *current;
 
 };
 
