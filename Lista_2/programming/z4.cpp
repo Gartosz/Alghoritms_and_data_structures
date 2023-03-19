@@ -19,14 +19,14 @@ class BSTiter
     
     void insert(int x)
     {
-        BSTiter **current_node = &current;
-        BSTiter **parent_node = nullptr;
+        BSTiter *parent_node = this;
+        BSTiter **current_node = &parent_node;
         while(*current_node)
         {
-            parent_node = current_node;
+            parent_node = *current_node;
             current_node = x < (*current_node)->x ? &((*current_node)->left) : &((*current_node)->right);
         }
-        *current_node = new BSTiter(x, *parent_node);
+        *current_node = new BSTiter(x, parent_node);
     }
 
 };
