@@ -68,7 +68,7 @@ class Node
 
         static BSTiter end()
         {
-            return nullptr;
+        return BSTiter(nullptr);
         }
 
     };
