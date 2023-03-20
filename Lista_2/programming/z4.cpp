@@ -54,6 +54,17 @@ class Node
             return *this;
         }  
         bool operator!= (const BSTiter& second_iterator) { return current_node != second_iterator.current_node; };  
+        static BSTiter begin(Node *bst) 
+        {           
+            while (bst->left) 
+                bst = bst->left;
+            return BSTiter(bst);
+        }
+
+        static BSTiter end()
+        {
+            return nullptr;
+        }
 
     private:
         Node *current_node;
