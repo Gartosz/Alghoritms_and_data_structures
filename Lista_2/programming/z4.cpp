@@ -28,8 +28,9 @@ class Node
     {
         BSTiter(Node *current) : current_node(current) {}
 
-        int &operator*() const { return current->x; }
-        Node* operator->() { return current; }
+        int &operator*() const { return current_node->x; }
+        Node* operator->() { return current_node; }
+        bool operator!= (const BSTiter& second_iterator) { return current_node != second_iterator.current_node; };  
 
     private:
         Node *current_node;
