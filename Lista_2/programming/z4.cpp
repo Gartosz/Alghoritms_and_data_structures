@@ -83,5 +83,7 @@ int main()
         tree.insert(nodes[i]);
     for (Node::BSTiter i = tree.begin(); i!=  tree.end(); ++i)
         std::cout<< *i <<std::endl;   
+    for (auto &node: tree)
+        std::cout << node << std::endl;
     return 0;
 }
