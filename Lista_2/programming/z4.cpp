@@ -38,8 +38,6 @@ class Node
                 current_node = current_node->parent;
                 while(current_node && (!current_node->right || current_node->right == child))
                 {
-                    if (current_node->right != child)
-                        return *this;
                     child = current_node;
                     current_node = current_node->parent;
                 }
@@ -66,7 +64,7 @@ class Node
             return BSTiter(bst);
         }
 
-        static BSTiter end()
+    static BSTiter end()
         {
         return BSTiter(nullptr);
         }
@@ -81,7 +79,7 @@ int main()
     int nodes[6] = {3, 4, 9, 56, 18, 37};
     for (int i = 0; i < sizeof(nodes)/sizeof(*nodes); ++i)
         tree.insert(nodes[i]);
-    for (Node::BSTiter i = tree.begin(); i!=  tree.end(); ++i)
+    for (Node::BSTiter i = tree.begin(); i != tree.end(); ++i)
         std::cout<< *i <<std::endl;   
     for (auto &node: tree)
         std::cout << node << std::endl;
