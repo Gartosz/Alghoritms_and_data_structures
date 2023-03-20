@@ -26,13 +26,13 @@ class Node
 
     struct BSTiter 
     {
-        BSTiter(Node *_current) : current(_current) {}
+        BSTiter(Node *current) : current_node(current) {}
 
         int &operator*() const { return current->x; }
         Node* operator->() { return current; }
 
     private:
-        Node *current;
+        Node *current_node;
     };
 
 int main()
