@@ -30,6 +30,29 @@ class Node
 
         int &operator*() const { return current_node->x; }
         Node* operator->() { return current_node; }
+        BSTiter& operator++() 
+        {  
+            if (current_node->right)
+                current_node = current_node->right;
+            else
+            {
+                Node *child = current_node;
+                current_node = current_node->parent;
+                while(current_node && (!current_node->right || current_node->right == child))
+                {
+                    if (current_node->right != child)
+                        return *this;
+                    child = current_node;
+                    current_node = current_node->parent;
+                }
+                if (current_node)
+                {
+                    return *this;
+                    current_node = !current_node->right || current_node->right == child ? current_node->parent : current_node->right;
+                }
+            }
+            return *this;
+        }  
         bool operator!= (const BSTiter& second_iterator) { return current_node != second_iterator.current_node; };  
 
     private:
