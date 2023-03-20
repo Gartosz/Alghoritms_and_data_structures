@@ -22,8 +22,6 @@ class Node
         *current_node = new Node(x, parent_node);
     }
 
-};
-
     struct BSTiter 
     {
         BSTiter(Node *current) : current_node(current) {}
@@ -53,9 +51,16 @@ class Node
             }
             return *this;
         }  
+
         bool operator!= (const BSTiter& second_iterator) { return current_node != second_iterator.current_node; };  
-        static BSTiter begin(Node *bst) 
+
+    private:
+        Node *current_node;
+    };
+
+    BSTiter begin() 
         {           
+        Node *bst = this;
             while (bst->left) 
                 bst = bst->left;
             return BSTiter(bst);
@@ -66,8 +71,6 @@ class Node
             return nullptr;
         }
 
-    private:
-        Node *current_node;
     };
 
 int main()
@@ -78,5 +81,7 @@ int main()
     int nodes[6] = {3, 4, 9, 56, 18, 37};
     for (int i = 0; i < sizeof(nodes)/sizeof(*nodes); ++i)
         tree.insert(nodes[i]);
+    for (Node::BSTiter i = tree.begin(); i!=  tree.end(); ++i)
+        std::cout<< *i <<std::endl;   
     return 0;
 }
