@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 class Node
 {
@@ -50,6 +51,7 @@ class Node
 
     private:
         Node *current_node;
+        std::stack<Node> stack;
     };
 
     BSTiter begin() 
