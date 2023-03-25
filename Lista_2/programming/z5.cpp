@@ -80,7 +80,7 @@ int main()
     Node tree(41);
     tree.insert(16);
     std::cout << tree.x << " " << (*tree.left).x << std::endl;
-    int nodes[6] = {3, 4, 9, 56, 18, 37};
+    int nodes[8] = {3, 4, 9, 56, 18, 37, 2, 1};
     for (int i = 0; i < sizeof(nodes)/sizeof(*nodes); ++i)
         tree.insert(nodes[i]);
     for (Node::BSTiter i = tree.begin(); i != tree.end(); ++i)
