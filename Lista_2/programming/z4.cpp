@@ -31,20 +31,19 @@ class Node
         BSTiter& operator++() 
         {  
             if (current_node->right)
+            {
                 current_node = current_node->right;
+                while (current_node->left) 
+                    current_node = current_node->left;
+            }
             else
             {
                 Node *child = current_node;
                 current_node = current_node->parent;
-                while(current_node && (!current_node->right || current_node->right == child))
+                while(current_node && current_node->right == child)
                 {
                     child = current_node;
                     current_node = current_node->parent;
-                }
-                if (current_node)
-                {
-                    return *this;
-                    current_node = !current_node->right || current_node->right == child ? current_node->parent : current_node->right;
                 }
             }
             return *this;
@@ -76,7 +75,7 @@ int main()
     Node tree(41);
     tree.insert(16);
     std::cout << tree.x << " " << (*tree.left).x << std::endl;
-    int nodes[6] = {3, 4, 9, 56, 18, 37};
+    int nodes[10] = {3, 4, 9, 56, 18, 37, 65, 58, 2, 1};
     for (int i = 0; i < sizeof(nodes)/sizeof(*nodes); ++i)
         tree.insert(nodes[i]);
     for (Node::BSTiter i = tree.begin(); i != tree.end(); ++i)
