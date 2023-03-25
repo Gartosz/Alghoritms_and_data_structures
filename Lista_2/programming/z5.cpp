@@ -1,16 +1,17 @@
 #include <iostream>
 #include <stack>
 
+template <typename key_type>
 class Node
 {
     public:
-    int x;
+    key_type x;
     Node *left;
     Node *right;
     
-    Node(int key) : x(key), right(nullptr), left(nullptr) {} 
+    Node(key_type key) : x(key), right(nullptr), left(nullptr) {} 
     
-    void insert(int x)
+    void insert(key_type x)
     {
         Node *parent_node = this;
         Node **current_node = &parent_node;
@@ -30,7 +31,7 @@ class Node
             }
         }
 
-        int &operator*() const { return current_node->x; }
+        key_type &operator*() const { return current_node->x; }
         Node* operator->() { return current_node; }
         BSTiter& operator++() 
         {  
@@ -77,14 +78,15 @@ class Node
 
 int main()
 {
-    Node tree(41);
+    Node<float> tree(41);
     tree.insert(16);
     std::cout << tree.x << " " << (*tree.left).x << std::endl;
-    int nodes[8] = {3, 4, 9, 56, 18, 37, 2, 1};
+    float nodes[8] = {3, 4.5, 9, 56.31, 18, 37, 2.0, 1.2};
     for (int i = 0; i < sizeof(nodes)/sizeof(*nodes); ++i)
         tree.insert(nodes[i]);
-    for (Node::BSTiter i = tree.begin(); i != tree.end(); ++i)
+    for (Node<float>::BSTiter i = tree.begin(); i != tree.end(); ++i)
         std::cout<< *i <<std::endl;   
+    std::cout << std::endl;
     for (auto &node: tree)
         std::cout << node << std::endl;
     return 0;
