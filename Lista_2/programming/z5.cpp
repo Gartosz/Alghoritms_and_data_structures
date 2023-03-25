@@ -21,7 +21,14 @@ class Node
 
     struct BSTiter 
     {
-        BSTiter(Node *current) : current_node(current) {}
+        BSTiter(Node *current) : current_node(current) 
+        {
+            while (current_node && current_node->left)
+            {
+                stack.push(current_node);
+                current_node = current_node->left;
+            }
+        }
 
         int &operator*() const { return current_node->x; }
         Node* operator->() { return current_node; }
@@ -56,10 +63,7 @@ class Node
 
     BSTiter begin() 
     {   
-        Node *bst = this;
-        while (bst->left) 
-            bst = bst->left;
-        return BSTiter(bst);
+        return BSTiter(this);
     }
 
     static BSTiter end()
