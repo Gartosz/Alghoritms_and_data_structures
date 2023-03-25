@@ -35,20 +35,22 @@ class Node
         BSTiter& operator++() 
         {  
             if (current_node->right)
+            {
                 current_node = current_node->right;
+                while (current_node->left)
+                {
+                    stack.push(current_node);
+                    current_node = current_node->left;
+                }
+            }
             else
             {
-                Node *child = current_node;
-                current_node = current_node->parent;
-                while(current_node && (!current_node->right || current_node->right == child))
+                if (stack.empty())
+                    current_node = nullptr;
+                else
                 {
-                    child = current_node;
-                    current_node = current_node->parent;
-                }
-                if (current_node)
-                {
-                    return *this;
-                    current_node = !current_node->right || current_node->right == child ? current_node->parent : current_node->right;
+                    current_node = stack.top();
+                    stack.pop();
                 }
             }
             return *this;
