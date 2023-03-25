@@ -51,7 +51,7 @@ class Node
 
     private:
         Node *current_node;
-        std::stack<Node> stack;
+        std::stack<Node*> stack;
     };
 
     BSTiter begin() 
