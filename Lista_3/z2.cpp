@@ -173,8 +173,38 @@ lnode* merge(lnode* L1, lnode* L2)
     return merged_list;
 }
 
+void insertion_sort(lnode*& L)
+{
+    lnode *sorted = nullptr;
+    lnode *current_node = L;
+    while (current_node)
+    {
+        lnode **node = &sorted;
+        while (*node && current_node->key <= (*node)->key)
+            node = &((*node)->next);
+
+        lnode *next_node = current_node->next;
+        if (*node)
+        {
+            lnode *found_node = *node;
+            *node = current_node;
+            (*node)->next = found_node;
+        }
+        else
+        {
+            *node = current_node;
+            (*node)->next = nullptr;
+        }
+        current_node = next_node;
+    }
+    reverse(sorted);
+    L = sorted;
+}
+
 int main()
 {
     lnode* test_list = new lnode({11, 13, 2, 7, 1, 20, 24});
+    print(test_list);
+    insertion_sort(test_list);
     print(test_list);
 }
