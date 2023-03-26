@@ -13,16 +13,23 @@ class Node
     
     void insert(int key)
     {
-        if ((!left && x > key) || (!right && x <= key))
+        if (x > key)
         {
-            x > key ? [this](){++nL; return left;}() : right = new Node(key, parent);
+            ++nL;
+            if(left)
+                left->insert(key);
+                
+            else
+                left = new Node(key, this);;
         }
         else
         {
-            if (left && x > key)
-            { 
-                ++nL;
-                left->insert(key);
+            if (right)
+                right->insert(key);
+            else
+                right = new Node(key, this);
+        }
+    }
             }
             else if(right)
                 right->insert(key);
