@@ -4,11 +4,12 @@ class Node
 {
     public:
     int x;
+    int nL;
     Node *parent;
     Node *left;
     Node *right;
     
-    Node(int key, Node *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr) {} 
+    Node(int key, int left_nodes = 0, Node *_parent = nullptr) : x(key), parent(_parent), right(nullptr), left(nullptr), nL(left_nodes) {} 
     
     void insert(int x)
     {
