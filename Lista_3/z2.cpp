@@ -22,7 +22,7 @@ struct lnode
 };
 
 
-void wypisz (lnode* L)
+void print (lnode* L)
 {
     std::cout << "[ ";
     while (L != nullptr)
@@ -176,5 +176,5 @@ lnode* merge(lnode* L1, lnode* L2)
 int main()
 {
     lnode* test_list = new lnode({11, 13, 2, 7, 1, 20, 24});
-    wypisz(test_list);
+    print(test_list);
 }
