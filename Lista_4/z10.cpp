@@ -27,8 +27,26 @@ uint32_t generate(uint32_t n)
     return random_index + 1;
 }
 
+uint32_t find_missing_number(std::string file_name)
+{
+    std::ifstream input(file_name);
+    uint32_t n = 1;
+    uint32_t number = 0;
+    uint32_t sum = 0;
+    while(input >> number)
+    {
+        ++n;
+        sum += number;
+    }
+    std::cout << ((1 + n) * n / 2) << "\n";
+    return ((1 + n) * n / 2) - sum;
+}
+
 int main()
 {
-    generate(15);
+    uint32_t n = 1234567;
+    uint32_t missing = generate(n);
+    uint32_t found = find_missing_number("random_1_" + std::to_string(n) + ".txt");
+    std::cout << missing << " " << found;
     return 0;
 }
