@@ -51,7 +51,6 @@ class Node
         
         return nullptr;
     }
-
 };
 
 int main ()
