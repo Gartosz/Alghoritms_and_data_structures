@@ -38,7 +38,7 @@ uint32_t find_missing_number(std::string file_name)
         ++n;
         sum += number;
     }
-    std::cout << ((1 + n) * n / 2) << "\n";
+    
     return ((1 + n) * n / 2) - sum;
 }
 
