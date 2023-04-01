@@ -2,6 +2,7 @@
 #include <numeric>
 #include <vector>
 #include <random>
+#include <algorithm>
 
 uint32_t generate(uint32_t n)
 {
@@ -13,8 +14,9 @@ uint32_t generate(uint32_t n)
     std::uniform_int_distribution<std::mt19937::result_type> distribution(0, n - 1);
     uint32_t random_index = distribution(rng);
 
-    
-
+    numbers.erase(numbers.begin() + random_index);
+    std::shuffle(numbers.begin(), numbers.end(), rng);
+    return random_index + 1;
 }
 
 int main()
