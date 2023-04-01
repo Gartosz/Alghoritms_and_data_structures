@@ -3,6 +3,8 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <fstream>
+#include <string>
 
 uint32_t generate(uint32_t n)
 {
@@ -16,6 +18,12 @@ uint32_t generate(uint32_t n)
 
     numbers.erase(numbers.begin() + random_index);
     std::shuffle(numbers.begin(), numbers.end(), rng);
+
+    std::ofstream file("random_1_" + std::to_string(n) + ".txt");
+
+    for (auto &number : numbers)
+        file << number << std::endl;
+
     return random_index + 1;
 }
 
