@@ -39,6 +39,7 @@ void insert(lnode* &L, int x)
 
 void counting_sort(lnode *&lista, int m)
 {
+    std::vector<lnode*> count_vector(m, nullptr);
 }
 
 int main()
