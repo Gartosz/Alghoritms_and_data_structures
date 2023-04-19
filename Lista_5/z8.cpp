@@ -37,8 +37,14 @@ void insert(lnode* &L, int x)
     L = new lnode(x, L);
 }
 
+void counting_sort(lnode *&lista, int m)
+{
+}
+
 int main()
 {
     lnode* test_list = new lnode({11,15,0,3,4,8,12,17,11,0,4});
+    print(test_list);
+    counting_sort(test_list, 18);
     print(test_list);
 }
