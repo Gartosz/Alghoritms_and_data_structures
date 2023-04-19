@@ -44,6 +44,12 @@ void counting_sort(lnode *&lista, int m)
     {
         if(count_vector[lista->key])
         {
+            lnode** current_head = &count_vector[lista->key];
+            while(*current_head)
+                current_head = &((*current_head)->next);
+            *current_head = lista;
+            lista = lista->next;
+            (*current_head)->next = nullptr;
         }
         else
         {
