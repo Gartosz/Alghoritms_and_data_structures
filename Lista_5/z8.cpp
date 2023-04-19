@@ -59,6 +59,15 @@ void counting_sort(lnode *&lista, int m)
             count_vector[key]->next = nullptr;
         }
     }
+
+    lista = nullptr;
+    lnode** current_head = &lista;
+    for(auto it=count_vector.begin(); it!=count_vector.end(); ++it)
+    {
+        while(*current_head)
+            current_head = &(*current_head)->next;
+        if(*it)
+            *current_head = *it;
     }
 }
 
