@@ -40,6 +40,20 @@ void insert(lnode* &L, int x)
 void counting_sort(lnode *&lista, int m)
 {
     std::vector<lnode*> count_vector(m, nullptr);
+    while (lista)
+    {
+        if(count_vector[lista->key])
+        {
+        }
+        else
+        {
+            std::size_t key = lista->key;
+            count_vector[key] = lista;
+            lista = lista->next;
+            count_vector[key]->next = nullptr;
+        }
+    }
+    }
 }
 
 int main()
