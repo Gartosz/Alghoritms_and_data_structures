@@ -24,7 +24,10 @@ int kth(int t[], int n, int k)
     int pivot = partition(t, n);
     if (pivot == k)
         return t[pivot];
-        
+    else if (pivot < k)
+        kth(t + pivot + 1, n - pivot - 1, k - pivot - 1);
+    else
+        kth(t, pivot, k);
 }
 
 int main()
