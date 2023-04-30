@@ -19,8 +19,9 @@ int partition (int t[], int n)
     }
 }
 
-int kth(int t[], int n)
+int kth(int t[], int n, int k)
 {
+    int pivot = partition(t, n);
 
 }
 
