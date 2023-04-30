@@ -32,5 +32,8 @@ int kth(int t[], int n, int k)
 
 int main()
 {
-
+    int t1[5] = {3, 54, 21, 7, 16};
+    int t2[10] = {1, 2, 3, 5, 8, 10, 11, 13, 17, 19};
+    std::cout << kth(t1, 5, 2) << "\n";
+    std::cout << kth(t2, 10, 5);
 }
